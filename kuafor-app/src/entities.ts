@@ -1,11 +1,15 @@
 import { NextApiRequest } from "next"
-import crypto from "crypto"
+let a=0
 function CreateGUID() {
-    return crypto.randomUUID()
+    a=a+1
+    return a
 }
-
+export type Employee = {
+    id: userID,
+    name: string
+}
 export type userID = string | number
-export type customer = {
+export type Customer = {
     name: string
     id: userID
     phone: string
@@ -16,20 +20,19 @@ export class Reservation {
     id: string
     start: Date
     end?: Date
-    customerID: userID
-    employeeID: userID
+    customer: Customer
+    employee: Employee
     confirmed: boolean
     constructor(options: {
-        id: string
         start: Date
         end?: Date
-        customerID: userID
-        employeeID: userID
+        customer: Customer
+        employee: Employee
     }) {
-        const { customerID, employeeID, start, end } = options
+        const { customer, employee, start, end } = options
         this.confirmed = false
-        this.customerID = customerID
-        this.employeeID = employeeID
+        this.customer = customer
+        this.employee = employee
         this.start = start
         this.end = end
         this.id = CreateGUID()

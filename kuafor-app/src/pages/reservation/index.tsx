@@ -1,24 +1,24 @@
 import { config } from "../../config"
 import ReservationOption from "../../components/ReservationOption"
+import { Reservation } from "@/entities"
 let { closingHours, openingHours,reservationDuration } = config
 // @ts-ignore
 closingHours = parseInt(closingHours.split(":")[0])
 // @ts-ignore
 openingHours = parseInt(openingHours.split(":")[0])
-const reservationOptions:any[] = []
+const reservations:Reservation[] = []
+reservations.push(new Reservation({
+    start: new Date(),
+    customer: {id:"1290ei"},
+    employee: {id:"1290ei"},
+}))
 
-
-for (let i = openingHours; i < closingHours; i=i+reservationDuration) {
-    reservationOptions.push(i)
-}
 export default () => {
     return <div>
         {
-            reservationOptions.map(reservationHour => {
-                return <ReservationOption startingHour={reservationHour} />
+            reservations.map(reservationData => {
+                return <ReservationOption {...reservationData} />
             })
         }
-
     </div>
 }
-
