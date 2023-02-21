@@ -1,12 +1,20 @@
+import {config} from "../config"
+import styles from "./ReservationOption.module.css"
+
+const {reservationDuration} = config
 type Employee = {
     name: string
 }
 type ReservationOptionProps = {
     startingHour: number,
-    employee: Employee
+    employee?: Employee
 }
-export default function <ReservationOptionProps>({ data }) {
-    return <div className="reservation-option">
-        {data}
+export default function ({ startingHour }:ReservationOptionProps) {
+    return <div className={styles.resoption}>
+        <div className={styles.hours}>{startingHour} - {startingHour+reservationDuration}</div>
+        <div className={styles.employees}>
+            Here BE EMPLOYEE LIST
+        </div>
+        
     </div>
 } 

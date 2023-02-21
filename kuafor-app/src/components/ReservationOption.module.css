@@ -1,0 +1,11 @@
+.resoption{
+    display: grid;
+    grid-template-columns: 100px 50%;
+}
+.hours{
+    text-align: center;
+    grid-column: 1 / span 0;
+}
+.employees{
+    grid-column: 1 / span 0;
+}
